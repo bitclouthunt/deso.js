@@ -1,0 +1,20 @@
+{
+  "name": "bitclout-sdk",
+  "version": "0.1.0",
+  "description": "Package to interact with BitClout API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "source": "src/index",
+  "files": [
+    "/dist"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/bitclouthunt/bitclout-sdk",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "typescript": "^4.4.2"
+  }
+}
