@@ -1,1 +1,1 @@
-export { BitClout } from './BitClout';
+export { BitClout } from "./BitClout";
