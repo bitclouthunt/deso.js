@@ -21,6 +21,17 @@ export class BitClout {
     return result?.data;
   }
 
+  async getUsersStateless({ publicKeys }: { publicKeys: string[] }) {
+    const path = "/v0/get-users-stateless";
+    const data = {
+      PublicKeysBase58Check: publicKeys,
+      SkipForLeaderboard: true,
+    };
+
+    const result = await this.getClient().post(path, data);
+    return result?.data;
+  }
+
   private getClient() {
     if (client) return client;
     client = axios.create({
