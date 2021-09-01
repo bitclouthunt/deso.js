@@ -22,6 +22,8 @@ npm install bitclout-sdk
 
 ## Usage
 
+Code docs: [documentation](https://bitclouthunt.github.io/bitclout-sdk/)
+
 ```js
 import { Bitclout } from "bitclout-sdk";
 
