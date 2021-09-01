@@ -12,7 +12,8 @@
   "repository": "https://github.com/bitclouthunt/bitclout-sdk",
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write --ignore-unknown ./src"
+    "format": "prettier --write --ignore-unknown ./src",
+    "example": "yarn --cwd example && yarn --cwd example install && yarn --cwd example dev"
   },
   "dependencies": {
     "axios": "^0.21.1"
