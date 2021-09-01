@@ -14,14 +14,34 @@
     "build": "tsc",
     "format": "prettier --write --ignore-unknown ./src",
     "example": "yarn --cwd example && yarn --cwd example install && yarn --cwd example dev",
-    "docs": "yarn typedoc src"
+    "docs": "yarn typedoc src",
+    "release": "yarn release-it --dry-run --npm.skipChecks"
   },
   "dependencies": {
     "axios": "^0.21.1"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^3.3.0",
     "prettier": "^2.3.2",
+    "release-it": "^14.11.5",
     "typedoc": "^0.21.9",
     "typescript": "^4.4.2"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
   }
 }
