@@ -32,6 +32,56 @@ export class BitClout {
     return result?.data;
   }
 
+  async getFollowsStateless({
+    publicKey,
+    getEntriesFollowingUsername,
+    numToFetch,
+  }: {
+    publicKey: string;
+    getEntriesFollowingUsername: boolean;
+    numToFetch: number;
+  }) {
+    const path = "/v0/get-follows-stateless";
+    const data = {
+      PublicKeyBase58Check: publicKey,
+      GetEntriesFollowingUsername: getEntriesFollowingUsername,
+      NumToFetch: numToFetch,
+    };
+
+    const result = await this.getClient().post(path, data);
+    return result?.data;
+  }
+
+  async getHoldersForPublicKey({
+    readerPublicKey,
+    publicKey,
+    numToFetch,
+  }: {
+    readerPublicKey: string;
+    publicKey: string;
+    numToFetch: number;
+  }) {
+    const path = "/v0/get-hodlers-for-public-key";
+    const data = {
+      ReaderPublicKeyBase58Check: readerPublicKey,
+      PublicKeyBase58Check: publicKey,
+      NumToFetch: numToFetch,
+    };
+
+    const result = await this.getClient().post(path, data);
+    return result?.data;
+  }
+
+  async submitTransaction({ transactionHex }: { transactionHex: string }) {
+    const path = "/v0/submit-transaction";
+    const data = {
+      TransactionHex: transactionHex,
+    };
+
+    const result = await this.getClient().post(path, data);
+    return result?.data;
+  }
+
   private getClient() {
     if (client) return client;
     client = axios.create({
