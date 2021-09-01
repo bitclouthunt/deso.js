@@ -1,5 +1,7 @@
 # bitclout-sdk
 
+[![npm version](https://img.shields.io/npm/v/bitclout-sdk.svg)](https://www.npmjs.com/package/bitclout-sdk)
+
 An SDK to interact with BitClout APIs
 
 ---
@@ -17,7 +19,7 @@ yarn add bitclout-sdk
 or
 
 ```sh
-npm install bitclout-sdk
+npm install --save bitclout-sdk
 ```
 
 ## Usage
