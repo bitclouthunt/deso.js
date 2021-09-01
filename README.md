@@ -1,6 +1,6 @@
 # bitclout-sdk
 
-This SDK is meant to help
+This SDK is to help interact with BitClout APIs
 
 ## Getting Started
 
