@@ -13,13 +13,15 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write --ignore-unknown ./src",
-    "example": "yarn --cwd example && yarn --cwd example install && yarn --cwd example dev"
+    "example": "yarn --cwd example && yarn --cwd example install && yarn --cwd example dev",
+    "docs": "yarn typedoc src"
   },
   "dependencies": {
     "axios": "^0.21.1"
   },
   "devDependencies": {
     "prettier": "^2.3.2",
+    "typedoc": "^0.21.9",
     "typescript": "^4.4.2"
   }
 }
