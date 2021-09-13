@@ -11,11 +11,23 @@ export class BitClout {
     this.baseUrl = baseUrl;
   }
 
-  async getSingleProfile({ publicKey }: { publicKey: string }) {
+  async getSingleProfile({
+    publicKey,
+    username,
+  }: {
+    publicKey?: string;
+    username?: string;
+  }) {
+    if (!publicKey && !username)
+      throw new Error("publicKey or username is required");
+
     const path = "/v0/get-single-profile";
-    const data = {
-      PublicKeyBase58Check: publicKey,
-    };
+    const data: any = {};
+    if (publicKey) {
+      data.PublicKeyBase58Check = publicKey;
+    } else if (username) {
+      data.username = username;
+    }
 
     const result = await this.getClient().post(path, data);
     return result?.data;
