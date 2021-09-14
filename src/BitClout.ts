@@ -15,8 +15,8 @@ export class BitClout {
     publicKey,
     isHodlingPublicKey,
   }: {
-    publicKey?: string;
-    isHodlingPublicKey?: string;
+    publicKey: string;
+    isHodlingPublicKey: string;
   }) {
     if (!publicKey) {
       throw new Error("publicKey is required");
