@@ -11,6 +11,32 @@ export class BitClout {
     this.baseUrl = baseUrl;
   }
 
+  async getIsHodlingPublicKey({
+    publicKey,
+    isHodlingPublicKey,
+  }: {
+    publicKey?: string;
+    isHodlingPublicKey?: string;
+  }) {
+    if (!publicKey) {
+      throw new Error("publicKey is required");
+    }
+
+    if (!isHodlingPublicKey) {
+      throw new Error("isHodlingPublicKey is required");
+    }
+
+    const path = "/v0/is-hodling-public-key";
+    const data = {
+      PublicKeyBase58Check: publicKey,
+      IsHodlingPublicKeyBase58Check: isHodlingPublicKey,
+    };
+
+    const result = await this.getClient().post(path, data);
+
+    return result?.data;
+  }
+
   async getSingleProfile({
     publicKey,
     username,
