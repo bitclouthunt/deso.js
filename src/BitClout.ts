@@ -126,6 +126,8 @@ export class BitClout {
       baseURL: this.baseUrl,
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
+        "Accept-Encoding": "gzip",
       },
     });
     return client;
