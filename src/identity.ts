@@ -1,5 +1,10 @@
 import { v4 as uuid } from "uuid";
 
+/**
+ * This has been copied & adapted from the BitClout identity service
+ * See: https://github.com/bitclout/frontend/blob/main/src/app/identity.service.ts
+ */
+
 export class IdentityService {
   // Requests that were sent before the iframe initialized
   private pendingRequests: any = [];
@@ -13,14 +18,6 @@ export class IdentityService {
 
   // The URL of the identity service
   identityServiceURL = "https://identity.bitclout.com/";
-  // identityServiceURL =
-  //   "https://identity.bitclout.com/log-in?accessLevelRequest=2";
-
-  // sanitizedIdentityServiceURL;
-
-  // User data
-  // identityServiceUsers;
-  // identityServicePublicKeyAdded: string;
 
   private initialized = false;
   private iframe: any = null;
@@ -38,9 +35,13 @@ export class IdentityService {
 
   // Launch a new identity window
 
+  login({ accessLevel }: { accessLevel: number }): Promise<any> {
+    return this.launch(`/log-in?accessLevelRequest=${accessLevel}`);
+  }
+
   launch(
-    path?: string,
-    params?: { publicKey?: string; tx?: string }
+    path?: string
+    // params?: { publicKey?: string; tx?: string }
   ): Promise<any> {
     let url = this.identityServiceURL as string;
     if (path) {
@@ -78,9 +79,6 @@ export class IdentityService {
       undefined,
       `toolbar=no, width=${w}, height=${h}, top=${y}, left=${x}`
     );
-    // this.identityWindowSubject = new Promise();
-
-    // return this.identityWindowSubject;
 
     const promise = new Promise((res, rej) => {
       this.identityWindowResolve = res;
@@ -90,15 +88,6 @@ export class IdentityService {
 
   // Outgoing messages
 
-  // burn(payload: {
-  //   accessLevel: number;
-  //   accessLevelHmac: string;
-  //   encryptedSeedHex: string;
-  //   unsignedHashes: string[];
-  // }): Observable<any> {
-  //   return this.send("burn", payload);
-  // }
-
   sign(payload: {
     accessLevel: number;
     accessLevelHmac: string;
@@ -107,45 +96,6 @@ export class IdentityService {
   }): Promise<any> {
     return this.send("sign", payload);
   }
-
-  // encrypt(payload: {
-  //   accessLevel: number;
-  //   accessLevelHmac: string;
-  //   encryptedSeedHex: string;
-  //   recipientPublicKey: string;
-  //   message: string;
-  // }): Observable<any> {
-  //   return this.send("encrypt", payload);
-  // }
-
-  // decrypt(payload: {
-  //   accessLevel: number;
-  //   accessLevelHmac: string;
-  //   encryptedSeedHex: string;
-  //   encryptedMessages: any;
-  // }): Observable<any> {
-  //   return this.send("decrypt", payload);
-  // }
-
-  // jwt(payload: {
-  //   accessLevel: number;
-  //   accessLevelHmac: string;
-  //   encryptedSeedHex: string;
-  // }): Observable<any> {
-  //   return this.send("jwt", payload);
-  // }
-
-  // info(): Observable<any> {
-  //   return this.send("info", {});
-  // }
-
-  // Helpers
-
-  // identityServiceParamsForKey(publicKey: string) {
-  //   const { encryptedSeedHex, accessLevel, accessLevelHmac } =
-  //     this.identityServiceUsers[publicKey];
-  //   return { encryptedSeedHex, accessLevel, accessLevelHmac };
-  // }
 
   // Incoming messages
 
@@ -163,20 +113,12 @@ export class IdentityService {
     this.respond(event.source as Window, event.data.id, {});
   }
 
-  // private handleStorageGranted() {
-  //   this.storageGranted.next(true);
-  //   this.storageGranted.complete();
-  // }
-
   private handleLogin(payload: any) {
     this.identityWindow.close();
     this.identityWindow = null;
 
     this.identityWindowResolve(payload);
     this.identityWindowResolve = null;
-    // this.identityWindowSubject.next(payload);
-    // this.identityWindowSubject.complete();
-    // this.identityWindowSubject = null;
   }
 
   private handleInfo(id: string) {
