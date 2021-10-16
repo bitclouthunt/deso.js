@@ -24,7 +24,7 @@ npm install --save bitclout-sdk
 
 ## Usage
 
-Code docs: [documentation](https://bitclouthunt.github.io/bitclout-sdk/)
+See full usage in code docs: [documentation](https://bitclouthunt.github.io/bitclout-sdk/)
 
 ### Bitclout
 
@@ -50,7 +50,7 @@ const fetchProfile = async (publicKey: string) => {
 import { identity } from "bitclout-sdk";
 
 const login = async () => {
-  const response = await identity.login({ accessLevel });
+  const response = await identity.login({ accessLevel: 2 });
   const publicKey = response.publicKeyAdded;
   return publickey;
 };
