@@ -24,7 +24,11 @@ npm install --save bitclout-sdk
 
 ## Usage
 
-Code docs: [documentation](https://bitclouthunt.github.io/bitclout-sdk/)
+See full usage in code docs: [documentation](https://bitclouthunt.github.io/bitclout-sdk/)
+
+### Bitclout
+
+#### Fetch a profile
 
 ```js
 import { Bitclout } from "bitclout-sdk";
@@ -35,6 +39,20 @@ const fetchProfile = async (publicKey: string) => {
   const profile = await bitclout.getSingleProfile({
     publicKey,
   });
+};
+```
+
+### Identity
+
+#### Login
+
+```js
+import { identity } from "bitclout-sdk";
+
+const login = async () => {
+  const response = await identity.login({ accessLevel: 2 });
+  const publicKey = response.publicKeyAdded;
+  return publickey;
 };
 ```
 
@@ -49,6 +67,10 @@ yarn example
 ```
 
 Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Identity login example
+
+Navigate to [http://localhost:3000/login](http://localhost:3000/login)
 
 ## Building code for development
 
