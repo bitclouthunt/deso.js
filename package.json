@@ -18,7 +18,8 @@
     "release": "release-it --npm.skipChecks"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^3.3.0",
