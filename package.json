@@ -1,7 +1,7 @@
 {
   "name": "bitclout-sdk",
   "version": "0.5.1",
-  "description": "Package to interact with BitClout API",
+  "description": "Package to interact with DeSo API",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "source": "src/index",
