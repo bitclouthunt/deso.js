@@ -15,7 +15,8 @@
     "format": "prettier --write --ignore-unknown ./src",
     "example": "yarn --cwd example && yarn --cwd example install && yarn --cwd example dev",
     "docs": "yarn typedoc src",
-    "release": "release-it --npm.skipChecks"
+    "release": "release-it --npm.skipChecks",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "axios": "^0.21.1",
