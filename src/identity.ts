@@ -17,7 +17,7 @@ export class IdentityService {
   private identityWindowResolve: any;
 
   // The URL of the identity service
-  identityServiceURL = "https://identity.bitclout.com/";
+  identityServiceURL = "https://identity.deso.org/";
 
   private initialized = false;
   private iframe: any = null;

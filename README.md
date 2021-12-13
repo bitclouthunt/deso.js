@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/bitclout-sdk.svg)](https://www.npmjs.com/package/bitclout-sdk)
 
-An SDK to interact with BitClout APIs
+An SDK to interact with DeSo APIs
 
 ---
 
@@ -31,9 +31,9 @@ See full usage in code docs: [documentation](https://bitclouthunt.github.io/bitc
 #### Fetch a profile
 
 ```js
-import { Bitclout } from "bitclout-sdk";
+import { BitClout } from "bitclout-sdk";
 
-const bitclout = new BitClout({ baseUrl: "https://bitclout.com/api" });
+const bitclout = new BitClout({ baseUrl: "https://node.deso.org/api" });
 
 const fetchProfile = async (publicKey: string) => {
   const profile = await bitclout.getSingleProfile({
@@ -52,7 +52,7 @@ import { identity } from "bitclout-sdk";
 const login = async () => {
   const response = await identity.login({ accessLevel: 2 });
   const publicKey = response.publicKeyAdded;
-  return publickey;
+  return publicKey;
 };
 ```
 
