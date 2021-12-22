@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>bitclout-sdk</title>
-	<meta name="description" content="Documentation for bitclout-sdk">
+	<title>deso.js</title>
+	<meta name="description" content="Documentation for deso.js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script async src="assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">bitclout-sdk</a>
+					<a href="index.html" class="title">deso.js</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,7 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>bitclout-sdk</h1>
+			<h1>deso.js</h1>
 		</div>
 	</div>
 </header>
@@ -58,38 +58,38 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#bitclout-sdk" id="bitclout-sdk" style="color: inherit; text-decoration: none;">
-					<h1>bitclout-sdk</h1>
+				<a href="#desojs" id="desojs" style="color: inherit; text-decoration: none;">
+					<h1>deso.js</h1>
 				</a>
-				<p><a href="https://www.npmjs.com/package/bitclout-sdk"><img src="https://img.shields.io/npm/v/bitclout-sdk.svg" alt="npm version"></a></p>
-				<p>An SDK to interact with BitClout APIs</p>
+				<p><a href="https://www.npmjs.com/package/deso.js"><img src="https://img.shields.io/npm/v/deso.js.svg" alt="npm version"></a></p>
+				<p>An SDK to interact with DeSo APIs</p>
 				<hr>
 				<p><strong>WARNING:</strong> Project is under heavy development, expect breakage until this warning is removed.</p>
 				<hr>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
-				<pre><code class="language-sh"><span style="color: #000000">yarn add bitclout-sdk</span>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add deso.js</span>
 </code></pre>
 				<p>or</p>
-				<pre><code class="language-sh"><span style="color: #000000">npm install --save bitclout-sdk</span>
+				<pre><code class="language-sh"><span style="color: #000000">npm install --save deso.js</span>
 </code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<p>See full usage in code docs: <a href="https://bitclouthunt.github.io/bitclout-sdk/">documentation</a></p>
-				<a href="#bitclout" id="bitclout" style="color: inherit; text-decoration: none;">
-					<h3>Bitclout</h3>
+				<p>See full usage in code docs: <a href="https://bitclouthunt.github.io/deso.js/">documentation</a></p>
+				<a href="#deso" id="deso" style="color: inherit; text-decoration: none;">
+					<h3>DeSo</h3>
 				</a>
 				<a href="#fetch-a-profile" id="fetch-a-profile" style="color: inherit; text-decoration: none;">
 					<h4>Fetch a profile</h4>
 				</a>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Bitclout</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;bitclout-sdk&quot;</span><span style="color: #000000">;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Deso</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;deso.js&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">bitclout</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">BitClout</span><span style="color: #000000">({ </span><span style="color: #001080">baseUrl:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://bitclout.com/api&quot;</span><span style="color: #000000"> });</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">deso</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Deso</span><span style="color: #000000">({ </span><span style="color: #001080">baseUrl:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://node.deso.org/api&quot;</span><span style="color: #000000"> });</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fetchProfile</span><span style="color: #000000"> = </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">publicKey</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">profile</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">bitclout</span><span style="color: #000000">.</span><span style="color: #795E26">getSingleProfile</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">profile</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">deso</span><span style="color: #000000">.</span><span style="color: #795E26">getSingleProfile</span><span style="color: #000000">({</span>
 <span style="color: #000000">    </span><span style="color: #001080">publicKey</span><span style="color: #000000">,</span>
 <span style="color: #000000">  });</span>
 <span style="color: #000000">};</span>
@@ -100,12 +100,12 @@
 				<a href="#login" id="login" style="color: inherit; text-decoration: none;">
 					<h4>Login</h4>
 				</a>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">identity</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;bitclout-sdk&quot;</span><span style="color: #000000">;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">identity</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;deso.js&quot;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">login</span><span style="color: #000000"> = </span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">identity</span><span style="color: #000000">.</span><span style="color: #795E26">login</span><span style="color: #000000">({ </span><span style="color: #001080">accessLevel:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> });</span>
 <span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">publicKey</span><span style="color: #000000"> = </span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">publicKeyAdded</span><span style="color: #000000">;</span>
-<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">publickey</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">publicKey</span><span style="color: #000000">;</span>
 <span style="color: #000000">};</span>
 </code></pre>
 				<a href="#example-code--sample-app" id="example-code--sample-app" style="color: inherit; text-decoration: none;">
@@ -143,7 +143,7 @@
 						<a href="modules.html">Modules</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/BitClout.html">Bit<wbr>Clout</a>
+						<a href="modules/Deso.html">Deso</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/identity.html">identity</a>
