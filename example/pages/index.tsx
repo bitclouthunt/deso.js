@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>bitclout-sdk example</h1>
+      <h1>deso.js example</h1>
       <div>
         <h2>Fetching users profile</h2>
         <p>An example of fetching a users profile via backend API</p>
