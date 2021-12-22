@@ -4,7 +4,7 @@ const DEFAULT_NODE_URL = "https://node.deso.org/api";
 
 let client: AxiosInstance | null;
 
-export class BitClout {
+export class DesoClient {
   baseUrl: string;
 
   constructor({ baseUrl = DEFAULT_NODE_URL }: { baseUrl?: string }) {

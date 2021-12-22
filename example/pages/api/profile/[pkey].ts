@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { BitClout } from "bitclout-sdk";
+import { Deso } from "deso.js";
 
-const bitclout = new BitClout({});
+const deso = new Deso({});
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,7 +10,7 @@ export default async function handler(
   const pkey = req.query.pkey as string;
   if (!pkey) throw new Error("pkey required");
 
-  const profile = await bitclout.getSingleProfile({
+  const profile = await deso.getSingleProfile({
     publicKey: pkey,
   });
 

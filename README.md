@@ -1,6 +1,6 @@
-# bitclout-sdk
+# deso.js
 
-[![npm version](https://img.shields.io/npm/v/bitclout-sdk.svg)](https://www.npmjs.com/package/bitclout-sdk)
+[![npm version](https://img.shields.io/npm/v/deso.js.svg)](https://www.npmjs.com/package/deso.js)
 
 An SDK to interact with DeSo APIs
 
@@ -13,30 +13,30 @@ An SDK to interact with DeSo APIs
 ## Installation
 
 ```sh
-yarn add bitclout-sdk
+yarn add deso.js
 ```
 
 or
 
 ```sh
-npm install --save bitclout-sdk
+npm install --save deso.js
 ```
 
 ## Usage
 
-See full usage in code docs: [documentation](https://bitclouthunt.github.io/bitclout-sdk/)
+See full usage in code docs: [documentation](https://bitclouthunt.github.io/deso.js/)
 
-### Bitclout
+### DeSo
 
 #### Fetch a profile
 
 ```js
-import { BitClout } from "bitclout-sdk";
+import { Deso } from "deso.js";
 
-const bitclout = new BitClout({ baseUrl: "https://node.deso.org/api" });
+const deso = new Deso({ baseUrl: "https://node.deso.org/api" });
 
 const fetchProfile = async (publicKey: string) => {
-  const profile = await bitclout.getSingleProfile({
+  const profile = await deso.getSingleProfile({
     publicKey,
   });
 };
@@ -47,7 +47,7 @@ const fetchProfile = async (publicKey: string) => {
 #### Login
 
 ```js
-import { identity } from "bitclout-sdk";
+import { identity } from "deso.js";
 
 const login = async () => {
   const response = await identity.login({ accessLevel: 2 });

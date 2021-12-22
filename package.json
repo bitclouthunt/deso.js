@@ -1,5 +1,5 @@
 {
-  "name": "bitclout-sdk",
+  "name": "deso.js",
   "version": "0.5.2",
   "description": "Package to interact with DeSo API",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
     "/dist"
   ],
   "license": "MIT",
-  "repository": "https://github.com/bitclouthunt/bitclout-sdk",
+  "repository": "https://github.com/bitclouthunt/deso.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write --ignore-unknown ./src",
