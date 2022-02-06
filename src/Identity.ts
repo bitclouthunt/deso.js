@@ -57,7 +57,7 @@ export class IdentityService {
     this.isWebview = isWebView;
     this.referralCode = referralCode;
 
-    window.addEventListener("message", this.handleMessage);
+    window.addEventListener("message", (event) => this.handleMessage(event));
   }
 
   // Launch a new identity window
@@ -326,6 +326,11 @@ export class IdentityService {
 
   // Outgoing messages
 
+  /**
+   * The sign message is responsible for signing transaction hexes.
+   *
+   * @param {string} payload.transactionHex Hex of the transaction you want to sign.
+   */
   sign(payload: {
     accessLevel: number;
     accessLevelHmac: string;
@@ -333,6 +338,49 @@ export class IdentityService {
     transactionHex: string;
   }): Promise<any> {
     return this.send("sign", payload);
+  }
+
+  /**
+   * The encrypt API is responsible for encrypting messages.
+   *
+   * @param {string} payload.recipientPublicKey Public key of the recipient in
+   * base58check format.
+   * @param {string} payload.message Message text that you want to encrypt.
+   */
+  encrypt(payload: {
+    accessLevel: number;
+    accessLevelHmac: string;
+    encryptedSeedHex: string;
+    recipientPublicKey: string;
+    message: string;
+  }): Promise<any> {
+    return this.send("encrypt", payload);
+  }
+
+  /**
+   * The decrypt API is responsible for decrypting messages.
+   *
+   * @param {string[]} payload.encryptedMessages List of encrypted messages objects.
+   */
+  decrypt(payload: {
+    accessLevel: number;
+    accessLevelHmac: string;
+    encryptedSeedHex: string;
+    encryptedMessages: any[];
+  }): Promise<any> {
+    return this.send("decrypt", payload);
+  }
+
+  /**
+   * The jwt message creates signed JWT tokens that can be used to verify a user's
+   * ownership of a specific public key. The JWT is only valid for 10 minutes.
+   */
+  jwt(payload: {
+    accessLevel: number;
+    accessLevelHmac: string;
+    encryptedSeedHex: string;
+  }): Promise<any> {
+    return this.send("jwt", payload);
   }
 
   // Incoming messages
