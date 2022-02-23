@@ -30,37 +30,31 @@ export class IdentityService {
   // Using testnet or mainnet
   isTestnet: boolean;
 
-  // Jumio referral code
-  referralCode: string;
-
   // Whether we're using a webview
   isWebview: boolean;
 
   /**
+   * Note: You should only create a single instance of Identity.
+   *
    * @param {string} [serviceUrl="https://identity.deso.org"] The base url for
    * the Identity Service.
    * @param {boolean} [isTestnet=false] Whether to use testnet (or mainnet).
    * @param {boolean} [isWebview=false] Whether we're using webview.
-   * @param {string} [referralCode] Referral Code through which the user accessed
    * the site. Allows the user to get a greater amount of money as a sign-up bonus.
    */
-  constructor({ serviceUrl = DESO_IDENTITY_URL, isTestnet, isWebView, referralCode }: {
+  constructor({ serviceUrl = DESO_IDENTITY_URL, isTestnet, isWebView }: {
     serviceUrl?: string,
     isTestnet?: boolean,
     isWebView?: boolean,
-    referralCode?: string,
   } = {}) {
     if (typeof window === "undefined") return;
 
     this.baseUrl = serviceUrl;
     this.isTestnet = isTestnet;
     this.isWebview = isWebView;
-    this.referralCode = referralCode;
 
     window.addEventListener("message", (event) => this.handleMessage(event));
   }
-
-  // Launch a new identity window
 
   /**
    * This endpoint is used to handle user login or account creation.
@@ -68,12 +62,14 @@ export class IdentityService {
    * @param {number} [accessLevel=2] Requested access level.
    * @param {boolean} [jumio=false] Whether to show "get free deso" during signup.
    * @param {boolean} [hideGoogle=false] Hide Google login from the Identity UI.
+   * @param {string} [referralCode] Referral Code through which the user accessed
    * @returns {Promise<any>} A Promise that resolves the response message payload.
    */
-  login({ accessLevel, jumio, hideGoogle }: {
+  login({ accessLevel, jumio, hideGoogle, referralCode }: {
     accessLevel?: number,
     jumio?: boolean,
     hideGoogle?: boolean,
+    referralCode?: string,
   }): Promise<any> {
     const params = new URLSearchParams();
 
@@ -93,8 +89,8 @@ export class IdentityService {
       params.append("jumio", String(jumio));
     }
 
-    if (this.referralCode) {
-      params.append("referralCode", this.referralCode);
+    if (referralCode) {
+      params.append("referralCode", referralCode);
     }
 
     if (hideGoogle) {
@@ -250,7 +246,10 @@ export class IdentityService {
    * @param publicKey Public key of the user to be KYC verified.
    * @returns {Promise<any>} A Promise that resolves the response message payload.
    */
-  getFreeDeso({ publicKey }: { publicKey: string }): Promise<any> {
+  getFreeDeso({ publicKey, referralCode }: {
+    publicKey: string,
+    referralCode: string
+  }): Promise<any> {
     const params = new URLSearchParams();
 
     if (!publicKey) {
@@ -259,8 +258,8 @@ export class IdentityService {
 
     params.append("publicKey", publicKey);
 
-    if (this.referralCode) {
-      params.append("referralCode", this.referralCode);
+    if (referralCode) {
+      params.append("referralCode", referralCode);
     }
 
     if (this.isTestnet) {
