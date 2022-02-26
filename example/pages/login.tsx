@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import {IdentityService} from "deso.js";
-const identity = IdentityService.init();
+import { Identity } from "deso.js";
+const identity = Identity.init();
 
 export default function Login() {
   const [publicKey, setPublicKey] = useState(null);

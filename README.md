@@ -36,9 +36,8 @@ import { Deso } from "deso.js";
 const deso = new Deso({ baseUrl: "https://node.deso.org/api" });
 
 const fetchProfile = async (publicKey: string) => {
-  const profile = await deso.getSingleProfile({
-    publicKey,
-  });
+  const response = await deso.getSingleProfile({ publicKey });
+  return response['Profile'];
 };
 ```
 
@@ -47,11 +46,13 @@ const fetchProfile = async (publicKey: string) => {
 #### Login
 
 ```js
-import { identity } from "deso.js";
+import { Identity } from "deso.js";
+
+const identity = new Identity();
 
 const login = async () => {
-  const response = await identity.login({ accessLevel: 2 });
-  const publicKey = response.publicKeyAdded;
+  const payload = await identity.login({ accessLevel: 2 });
+  const publicKey = payload.publicKeyAdded;
   return publicKey;
 };
 ```
@@ -60,7 +61,7 @@ const login = async () => {
 
 A sample app can be found in [/example](/example)
 
-Runing example code project:
+Running example code project:
 
 ```sh
 yarn example

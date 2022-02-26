@@ -3,5 +3,4 @@ export {
     DesoClient as BitClout,
     DesoClient as Deso
 };
-import { IdentityService } from './identity';
-export { IdentityService };
+export { IdentityService as Identity } from "./Identity";
