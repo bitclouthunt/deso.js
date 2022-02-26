@@ -6,6 +6,8 @@ import { v4 as uuid } from "uuid";
  */
 
 export class IdentityService {
+  private static instance: IdentityService | null;
+
   // Requests that were sent before the iframe initialized
   private pendingRequests: any = [];
 
@@ -28,9 +30,15 @@ export class IdentityService {
   // Using testnet or mainnet
   isTestnet = false;
 
-  constructor() {
+  private constructor() {
     if (typeof window === "undefined") return;
     window.addEventListener("message", (event) => this.handleMessage(event));
+  }
+
+  static init() {
+    if (this.instance) return this.instance;
+    this.instance = new IdentityService();
+    return this.instance;
   }
 
   // Launch a new identity window
@@ -204,4 +212,4 @@ export class IdentityService {
   }
 }
 
-export const identity = new IdentityService();
+// export const identity = new IdentityService();

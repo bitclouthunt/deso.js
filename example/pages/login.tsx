@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { identity } from "bitclout-sdk";
+import {IdentityService} from "deso.js";
+const identity = IdentityService.init();
 
 export default function Login() {
   const [publicKey, setPublicKey] = useState(null);
