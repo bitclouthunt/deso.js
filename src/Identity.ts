@@ -8,6 +8,9 @@ import { v4 as uuid } from "uuid";
 const DESO_IDENTITY_URL = "https://identity.deso.org";
 
 export class IdentityService {
+  // Singleton identity instance
+  private static instance: IdentityService | null;
+
   // Requests that were sent before the iframe initialized
   private pendingRequests: any = [];
 
@@ -40,9 +43,8 @@ export class IdentityService {
    * the Identity Service.
    * @param {boolean} [isTestnet=false] Whether to use testnet (or mainnet).
    * @param {boolean} [isWebview=false] Whether we're using webview.
-   * the site. Allows the user to get a greater amount of money as a sign-up bonus.
    */
-  constructor({ serviceUrl = DESO_IDENTITY_URL, isTestnet, isWebView }: {
+  private constructor({ serviceUrl = DESO_IDENTITY_URL, isTestnet, isWebView }: {
     serviceUrl?: string,
     isTestnet?: boolean,
     isWebView?: boolean,
@@ -54,6 +56,22 @@ export class IdentityService {
     this.isWebview = isWebView;
 
     window.addEventListener("message", (event) => this.handleMessage(event));
+  }
+
+  /**
+   * @param {string} [serviceUrl="https://identity.deso.org"] The base url for
+   * the Identity Service.
+   * @param {boolean} [isTestnet=false] Whether to use testnet (or mainnet).
+   * @param {boolean} [isWebview=false] Whether we're using webview.
+   */
+  static init(options: {
+    serviceUrl?: string,
+    isTestnet?: boolean,
+    isWebView?: boolean,
+  } = {}) {
+    if (this.instance) return this.instance;
+    this.instance = new IdentityService(options);
+    return this.instance;
   }
 
   /**

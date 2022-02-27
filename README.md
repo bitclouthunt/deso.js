@@ -48,7 +48,7 @@ const fetchProfile = async (publicKey: string) => {
 ```js
 import { Identity } from "deso.js";
 
-const identity = new Identity();
+const identity = Identity.init();
 
 const login = async () => {
   const payload = await identity.login({ accessLevel: 2 });

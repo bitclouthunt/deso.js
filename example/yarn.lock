@@ -879,8 +879,10 @@ des.js@^1.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
-deso.js@../:
-  version "0.5.2"
+deso.js@^0.5.2:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/deso.js/-/deso.js-0.5.3.tgz#a736b42a24c07738e8b24341dffafb4e0b2b14c6"
+  integrity sha512-PLCRoi5moXvVTUocu0HmypL7POhBjshVWVl+AqFZ09oX7vIlrLTUjYizHCD7UsXwnE5uyhaJepLXdJh1e+izpg==
   dependencies:
     axios "^0.21.1"
     uuid "^8.3.2"
