@@ -89,9 +89,8 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">deso</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Deso</span><span style="color: #000000">({ </span><span style="color: #001080">baseUrl:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://node.deso.org/api&quot;</span><span style="color: #000000"> });</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fetchProfile</span><span style="color: #000000"> = </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">publicKey</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">profile</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">deso</span><span style="color: #000000">.</span><span style="color: #795E26">getSingleProfile</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">publicKey</span><span style="color: #000000">,</span>
-<span style="color: #000000">  });</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">deso</span><span style="color: #000000">.</span><span style="color: #795E26">getSingleProfile</span><span style="color: #000000">({ </span><span style="color: #001080">publicKey</span><span style="color: #000000"> });</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">response</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;Profile&#039;</span><span style="color: #000000">];</span>
 <span style="color: #000000">};</span>
 </code></pre>
 				<a href="#identity" id="identity" style="color: inherit; text-decoration: none;">
@@ -100,11 +99,13 @@
 				<a href="#login" id="login" style="color: inherit; text-decoration: none;">
 					<h4>Login</h4>
 				</a>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">identity</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;deso.js&quot;</span><span style="color: #000000">;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Identity</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;deso.js&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">identity</span><span style="color: #000000"> = </span><span style="color: #001080">Identity</span><span style="color: #000000">.</span><span style="color: #795E26">init</span><span style="color: #000000">();</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">login</span><span style="color: #000000"> = </span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">response</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">identity</span><span style="color: #000000">.</span><span style="color: #795E26">login</span><span style="color: #000000">({ </span><span style="color: #001080">accessLevel:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> });</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">publicKey</span><span style="color: #000000"> = </span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">publicKeyAdded</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">payload</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">identity</span><span style="color: #000000">.</span><span style="color: #795E26">login</span><span style="color: #000000">({ </span><span style="color: #001080">accessLevel:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> });</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">publicKey</span><span style="color: #000000"> = </span><span style="color: #001080">payload</span><span style="color: #000000">.</span><span style="color: #001080">publicKeyAdded</span><span style="color: #000000">;</span>
 <span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">publicKey</span><span style="color: #000000">;</span>
 <span style="color: #000000">};</span>
 </code></pre>
@@ -112,7 +113,7 @@
 					<h2>Example code / Sample app</h2>
 				</a>
 				<p>A sample app can be found in <a href="/example">/example</a></p>
-				<p>Runing example code project:</p>
+				<p>Running example code project:</p>
 				<pre><code class="language-sh"><span style="color: #000000">yarn example</span>
 </code></pre>
 				<p>Navigate to <a href="http://localhost:3000">http://localhost:3000</a></p>
@@ -146,7 +147,7 @@
 						<a href="modules/Deso.html">Deso</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/identity.html">identity</a>
+						<a href="modules/Identity.html">Identity</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/index.html">index</a>
@@ -164,9 +165,6 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 			</ul>
