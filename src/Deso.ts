@@ -1,14 +1,41 @@
 import axios, { AxiosInstance } from "axios";
 
+import { CustomError } from 'ts-custom-error'
+
 const DEFAULT_NODE_URL = "https://node.deso.org/api";
 
 let client: AxiosInstance | null;
+
+/**
+ * Represents an error returned by the API.
+ */
+class DeSoError extends CustomError {
+  public constructor(message?: string) {
+    super(message);
+  }
+}
 
 export class DesoClient {
   baseUrl: string;
 
   constructor({ baseUrl = DEFAULT_NODE_URL }: { baseUrl?: string }) {
     this.baseUrl = baseUrl;
+  }
+
+  private async post(path: string, data: any) {
+    let result;
+
+    try {
+      result = await this.getClient().post(path, data);
+    } catch (e) {
+      if (e.response.data?.error) {
+        throw new DeSoError(e.response.data?.error);
+      } else {
+        throw e;
+      }
+    }
+
+    return result?.data;
   }
 
   /**
@@ -27,10 +54,7 @@ export class DesoClient {
    */
   async getAppState() {
     const path = "/v0/get-app-state";
-
-    const result = await this.getClient().post(path, {});
-
-    return result?.data;
+    return this.post(path, {});
   }
 
   /**
@@ -58,9 +82,7 @@ export class DesoClient {
       IsHodlingPublicKeyBase58Check: isHodlingPublicKey,
     };
 
-    const result = await this.getClient().post(path, data);
-
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -84,8 +106,7 @@ export class DesoClient {
       data.username = username;
     }
 
-    const result = await this.getClient().post(path, data);
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -98,8 +119,7 @@ export class DesoClient {
       SkipForLeaderboard: true,
     };
 
-    const result = await this.getClient().post(path, data);
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -121,8 +141,7 @@ export class DesoClient {
       NumToFetch: numToFetch,
     };
 
-    const result = await this.getClient().post(path, data);
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -161,8 +180,7 @@ export class DesoClient {
       FetchHodlings: fetchHodlings,
     };
 
-    const result = await this.getClient().post(path, data);
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -198,9 +216,7 @@ export class DesoClient {
       NumToFetch: numToFetch,
     };
 
-    const result = await this.getClient().post(path, data);
-
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -216,9 +232,7 @@ export class DesoClient {
       TxnHashHex: txnHashHex,
     };
 
-    const result = await this.getClient().post(path, data);
-
-    return result?.data;
+    return this.post(path, data);
   }
 
   /**
@@ -234,8 +248,7 @@ export class DesoClient {
       TransactionHex: transactionHex,
     };
 
-    const result = await this.getClient().post(path, data);
-    return result?.data;
+    return this.post(path, data);
   }
 
   private getClient() {
